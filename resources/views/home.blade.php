@@ -29,7 +29,7 @@
                         <td class="text-center">
                             <a href="#" class="btn btn-outline-primary">Editar</a>
 
-                            <a href="#" class="btn btn-outline-danger">Remover</a>
+                            <a href="{{route('saidas.destroy',$saida->id)}}" class="btn btn-outline-danger">Remover</a>
                         </td>
                 </tr>
                 @endforeach

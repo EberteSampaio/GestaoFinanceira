@@ -19,7 +19,8 @@ use \App\Http\Controllers\SaidasController;
 Route::prefix('saidas')->namespace('Saidas')->group(function () {
    Route::get('/',[SaidasController::class,'index'])->name('saidas.index');
    Route::get('/create',[SaidasController::class,'create'])->name('saidas.create');
-   Route::post('',[SaidasController::class, 'store'])->name('saidas.store');
+   Route::post('/saidas',[SaidasController::class, 'store'])->name('saidas.store');
+   Route::get('/{id}',[SaidasController::class, 'destroy'])->name('saidas.destroy');
 });
 
 Route::redirect('/','/saidas');
