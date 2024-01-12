@@ -119,14 +119,14 @@ class SaidasController extends Controller
 
             $request->validate($regras, $msgErro);
 
-            $updateSaida = new Saidas([
+            $updateSaida->fill([
                 'data_saida' => $request->input('data_saida'),
                 'local_visitado' => $request->input('local_visitado'),
                 'valor_gasto' => $request->input('quantidade_gasta'),
                 'pagador' => $request->input('pagador')
             ]);
 
-            $updateSaida->save();
+            $updateSaida->update();
 
             return redirect('/');
         }catch (Exception$e){
