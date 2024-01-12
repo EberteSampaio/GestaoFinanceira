@@ -106,6 +106,14 @@ class SaidasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            if(!Saidas::destroy($id)){
+                throw new Exception('Erro ao remover item. Verifique a conexão com o banco de dados');
+            }
+
+            return redirect()->route('saidas.index',['sucess'=>'Item excluido com sucesso.']);
+        }catch (Exception $e){
+            return redirect('saidas.index',['error'=>'Erro ao excluir a saída. Detalhe: ' . $e->getMessage()]);
+        }
     }
 }
