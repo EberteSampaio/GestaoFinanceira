@@ -20,7 +20,10 @@ Route::prefix('saidas')->namespace('Saidas')->group(function () {
    Route::get('/',[SaidasController::class,'index'])->name('saidas.index');
    Route::get('/create',[SaidasController::class,'create'])->name('saidas.create');
    Route::post('/saidas',[SaidasController::class, 'store'])->name('saidas.store');
+   Route::get('/{id}/edit', [SaidasController::class, 'edit'])->name('saidas.edit');
+   Route::put('/{id}',[SaidasController::class,'update'])->name('saidas.update');
    Route::get('/{id}',[SaidasController::class, 'destroy'])->name('saidas.destroy');
+
 });
 
 Route::redirect('/','/saidas');

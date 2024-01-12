@@ -11,9 +11,7 @@ use \Exception;
 
 class SaidasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
 
@@ -27,17 +25,11 @@ class SaidasController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         try {
@@ -53,7 +45,7 @@ class SaidasController extends Controller
             $msgErro = [
                 'data_saida.required' => 'É necessário especificar a data.',
                 'local_visitado.required' => 'É necessário especificar o local visitado.',
-                'quantidade_gasta.required' => 'É necessário especificar o local visitado.',
+                'quantidade_gasta.required' => 'É necessário a quantidade gasta no local.',
                 'quantidade_gasta.numeric' => 'É necessário que o campo de valor gasto no passeio seja númerico.',
                 'quantidade_gasta.min' => 'É necessário que o campo de valor gasto seja maior que R$ 0.',
                 'pagador.required' => 'É necessário especificar o pagador do passeio.'
@@ -90,7 +82,14 @@ class SaidasController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        try {
+            $saida = Saidas::findOrFail($id);
+
+
+            return view('edit', compact('saida'));
+        }catch (Exception $e){
+            return redirect()->route('saidas.index')->with(['erro' => 'Problema ao acessar a informação. Detalhe: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -98,7 +97,41 @@ class SaidasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+
+            $updateSaida = Saidas::findOrFail($id);
+
+            $regras = [
+                'data_saida' => ['required'],
+                'local_visitado' => 'required|string',
+                'quantidade_gasta' => 'required|numeric|min:0',
+                'pagador' => 'required|string'
+            ];
+
+            $msgErro = [
+                'data_saida.required' => 'É necessário especificar a data.',
+                'local_visitado.required' => 'É necessário especificar o local visitado.',
+                'quantidade_gasta.required' => 'É necessário a quantidade gasta no local.',
+                'quantidade_gasta.numeric' => 'É necessário que o campo de valor gasto no passeio seja númerico.',
+                'quantidade_gasta.min' => 'É necessário que o campo de valor gasto seja maior que R$ 0.',
+                'pagador.required' => 'É necessário especificar o pagador do passeio.'
+            ];
+
+            $request->validate($regras, $msgErro);
+
+            $updateSaida = new Saidas([
+                'data_saida' => $request->input('data_saida'),
+                'local_visitado' => $request->input('local_visitado'),
+                'valor_gasto' => $request->input('quantidade_gasta'),
+                'pagador' => $request->input('pagador')
+            ]);
+
+            $updateSaida->save();
+
+            return redirect('/');
+        }catch (Exception$e){
+            return response()->json(['error'=>'Erro ao registrar as informações. Detalhes: '.$e->getMessage()],500);
+        }
     }
 
     /**

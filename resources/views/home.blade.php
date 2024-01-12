@@ -27,7 +27,7 @@
                         <td>{{$saida->getPrecoFormatado()}}</td>
                         <td>{{$saida->pagador}}</td>
                         <td class="text-center">
-                            <a href="#" class="btn btn-outline-primary">Editar</a>
+                            <a href="{{route('saidas.edit',$saida->id)}}" class="btn btn-outline-primary">Editar</a>
 
                             <a href="{{route('saidas.destroy',$saida->id)}}" class="btn btn-outline-danger">Remover</a>
                         </td>
