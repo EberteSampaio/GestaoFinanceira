@@ -45,7 +45,7 @@ class SaidasController extends Controller
             $msgErro = [
                 'data_saida.required' => 'É necessário especificar a data.',
                 'local_visitado.required' => 'É necessário especificar o local visitado.',
-                'quantidade_gasta.required' => 'É necessário especificar o local visitado.',
+                'quantidade_gasta.required' => 'É necessário a quantidade gasta no local.',
                 'quantidade_gasta.numeric' => 'É necessário que o campo de valor gasto no passeio seja númerico.',
                 'quantidade_gasta.min' => 'É necessário que o campo de valor gasto seja maior que R$ 0.',
                 'pagador.required' => 'É necessário especificar o pagador do passeio.'
