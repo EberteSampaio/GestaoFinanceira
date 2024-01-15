@@ -24,9 +24,6 @@
                         <div class="mb-3">
                             <label for="position" class="form-label">Pagador</label>
                             <input type="text" class="form-control" id="pagador" name="pagador" required>
-                            <div id="passwordHelpBlock" class="form-text">
-                                Caso tenha mais de um pagador, registre separadamente.
-                            </div>
                         </div>
                         <input type="submit" value="Registrar" class="btn btn-success">
                     </form>

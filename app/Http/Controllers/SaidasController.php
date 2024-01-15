@@ -146,7 +146,7 @@ class SaidasController extends Controller
 
             return redirect()->route('saidas.index',['sucess'=>'Item excluido com sucesso.']);
         }catch (Exception $e){
-            return redirect('saidas.index',['error'=>'Erro ao excluir a saída. Detalhe: ' . $e->getMessage()]);
+            return redirect()->route('saidas.index',['error'=>'Erro ao excluir a saída. Detalhe: ' . $e->getMessage()]);
         }
     }
 }
