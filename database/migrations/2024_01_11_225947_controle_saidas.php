@@ -15,7 +15,7 @@ return new class extends Migration
                 $table->id();
                 $table->date('data_saida')->nullable();
                 $table->string('local_visitado','200')->nullable();
-                $table->unsignedFloat('valor_gasto',4,2)->nullable();
+                $table->unsignedFloat('valor_gasto',7,2)->nullable();
                 $table->string('pagador','50')->nullable();
                 $table->timestamps();
         });
